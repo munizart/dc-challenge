@@ -1,0 +1,10 @@
+{
+    "extends": "standard",
+    "rules": {
+        "arrow-parens": ["error", "always"]
+    },
+    "env": {
+        "node": true,
+        "jest": true
+    }
+}
