@@ -1,24 +1,11 @@
 /* eslint-disable prefer-promise-reject-errors */
 
 jest.mock('rate-limiter-flexible')
+const rl = require('rate-limiter-flexible')
 const limiterMiddleware = require('../src/limiter')
 
 const req1 = { body: 'test string' }
 const req2 = { body: 'another test string' }
-
-let blocking = false
-
-const mockLimiter = {
-  consume () {
-    if (blocking) {
-      return Promise.reject()
-    } else {
-      return Promise.resolve()
-    }
-  }
-}
-
-const createLimiter = () => mockLimiter
 
 describe('part-1/limiter', () => {
   let limiter
@@ -27,8 +14,8 @@ describe('part-1/limiter', () => {
   let status
 
   beforeEach(() => {
-    limiter = limiterMiddleware('test', createLimiter)
-    blocking = false
+    limiter = limiterMiddleware('test')
+    rl.blocking = false
 
     send = jest.fn()
     status = jest.fn(() => ({
@@ -54,7 +41,7 @@ describe('part-1/limiter', () => {
     limiter(req1, res, () => {
       expect(status).toHaveBeenCalledTimes(0)
       expect(send).toHaveBeenCalledTimes(0)
-      blocking = true
+      rl.blocking = true
       limiter(req1, {
         status (status) {
           return {

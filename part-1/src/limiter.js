@@ -13,8 +13,8 @@ const createLimiter = (routeName) => {
   })
 }
 
-const limiterMiddleware = (routeName, limiterFactory = createLimiter) => {
-  const limiter = limiterFactory(routeName)
+const limiterMiddleware = (routeName) => {
+  const limiter = createLimiter(routeName)
 
   return (req, res, next) => {
     limiter
