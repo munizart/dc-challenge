@@ -9,7 +9,7 @@ app.use(bodyParser.text({ limit: '2gb', type: '*/*' }))
 
 app.post('/v1/products', limiterMiddleware('products'), (req, res) => {
   // update logic here
-  res.status(200).send('ok')
+  res.status(200).send('ok\n')
 })
 
 app.listen(PORT, () => {
