@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint lib part-1 part-2",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:lib": "jest lib --coverage",
+    "test:part-1": "jest part-1 --coverage",
+    "test:part-2": "jest part-2 --coverage"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +16,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "express": "^4.16.4",
     "rate-limiter-flexible": "^0.23.3",
     "redis": "^2.8.0"
   },
