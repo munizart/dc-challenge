@@ -48,7 +48,7 @@ describe('part-1/limiter', () => {
             send (sended) {
               expect(next).toHaveBeenCalledTimes(0)
               expect(status).toBe(403)
-              expect(sended).toBe('Forbidden')
+              expect(sended).toBe('Forbidden\n')
               done()
             }
           }
